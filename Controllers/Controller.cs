@@ -6,55 +6,55 @@ namespace code_refactoring.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AnimalzController : ControllerBase
+    public class AnimalsController : ControllerBase
     {
-        private ApplicationDbContext db;
-        private AnimalService servicer;
+        private ApplicationDbContext _db;
+        private AnimalService _service;
 
-        public AnimalzController(ApplicationDbContext d, AnimalService s)
+        public AnimalsController(ApplicationDbContext dbContext, AnimalService animalService)
         {
-            db = d;
-            servicer = s;
+            _db = dbContext;
+            _service = animalService;
         }
 
         [HttpGet("getall")]
         public List<Animal> GetAllAnimals()
         {
 
-            return db.Animal.ToList();
+            return _db.Animals.ToList();
         }
 
         [HttpGet("getone/{x}")]
         public Animal GetOneAnimal(int x)
         {
-            return db.Animal.Find(x);
+            return _db.Animals.Find(x);
         }
 
         [HttpPost("add")]
         public string AddAnimal([FromQuery] string n, string o, int a, string t)
         {
-            servicer.AddNewAnimal(n, o, a, t);
+            _service.AddNewAnimal(n, o, a, t);
             return "200? most probably.";
         }
 
         [HttpPost("heal/{id}")]
         public string HealAnimal(int id)
         {
-            servicer.DoHeal(id);
+            _service.DoHeal(id);
             return "Animal is healed... maybe. What status code?";
         }
 
         [HttpDelete("delete/{id}")]
         public string DeleteAnimal(int id)
         {
-            db.Remove(id);
+            _db.Remove(id);
             return "removed i think";
         }
 
         [HttpPost("ageup")]
         public string AgeUp()
         {
-            servicer.RandomAgeUp();
+            _service.RandomAgeUp();
             return "everyone got older";
         }
     }

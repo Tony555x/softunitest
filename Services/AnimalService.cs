@@ -11,7 +11,7 @@ namespace code_refactoring.Services
 
         public void DoHeal(int id)
         {
-            var x = _db.Animal.Find(id);
+            var x = _db.Animals.Find(id);
             if (x != null)
             {
                 x.Heal();
@@ -28,12 +28,12 @@ namespace code_refactoring.Services
             newAnimal.agee = a;
             newAnimal.typee = t;
             newAnimal.sickOrNot = false;
-            _db.Animal.Add(newAnimal);
+            _db.Animals.Add(newAnimal);
         }
 
         public void RandomAgeUp()
         {
-            foreach (var x in _db.Animal.ToList())
+            foreach (var x in _db.Animals.ToList())
             {
                 x.agee += 7;
             }

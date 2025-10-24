@@ -9,6 +9,6 @@ namespace code_refactoring.Data
     {
         public ApplicationDbContext(DbContextOptions options)
             : base(options) { }
-        public DbSet<Animal> Animal { get; set; }
+        public DbSet<Animal> Animals { get; set; }
     }
 }
