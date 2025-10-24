@@ -18,16 +18,16 @@ namespace code_refactoring.Controllers
         }
 
         [HttpGet("getall")]
-        public List<Stoka> GetAllAnimals()
+        public List<Animal> GetAllAnimals()
         {
 
-            return db.Stoki.ToList();
+            return db.Animal.ToList();
         }
 
         [HttpGet("getone/{x}")]
-        public Stoka GetOneAnimal(int x)
+        public Animal GetOneAnimal(int x)
         {
-            return db.Stoki.Find(x);
+            return db.Animal.Find(x);
         }
 
         [HttpPost("add")]
