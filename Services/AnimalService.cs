@@ -1,6 +1,7 @@
 using System;
 using code_refactoring.Data;
 using code_refactoring.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace code_refactoring.Services
 {
@@ -9,34 +10,37 @@ namespace code_refactoring.Services
         private ApplicationDbContext _db;
         public AnimalService(ApplicationDbContext dbContext) { _db = dbContext; }
 
-        public void Heal(int id)
+        public async Task Heal(int id)
         {
-            var x = _db.Animals.Find(id);
+            var x = await _db.Animals.FindAsync(id);
             if (x != null)
             {
                 x.Heal();
                 Console.WriteLine("Healed animal with id " + id);
             }
+            await _db.SaveChangesAsync();
         }
 
-        public void AddNewAnimal(string name, string owner, int age, string type)
+        public async Task AddNewAnimal(string name, string owner, int age, string type)
         {
             var newAnimal = new Animal();
-            newAnimal.id = new Random().Next(1000, 9999);
+            newAnimal.Id = new Random().Next(1000, 9999);
             newAnimal.Name = name;
             newAnimal.Owner = owner;
             newAnimal.Age = age;
             newAnimal.Type = type;
             newAnimal.Sick = false;
-            _db.Animals.Add(newAnimal);
+            await _db.Animals.AddAsync(newAnimal);
+            await _db.SaveChangesAsync();
         }
 
-        public void AllAgeUp()
+        public async Task AllAgeUp()
         {
-            foreach (var x in _db.Animals.ToList())
+            foreach (var x in await _db.Animals.ToListAsync())
             {
                 x.MakeOlder();
             }
+            await _db.SaveChangesAsync();
         }
     }
 }

@@ -2,6 +2,7 @@ using code_refactoring.Data;
 using code_refactoring.Data.Models;
 using code_refactoring.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 namespace code_refactoring.Controllers
 {
     [ApiController]
@@ -18,44 +19,52 @@ namespace code_refactoring.Controllers
         }
 
         [HttpGet("getall")]
-        public List<Animal> GetAllAnimals()
+        public async Task<List<Animal>> GetAllAnimals()
         {
 
-            return _db.Animals.ToList();
+            return await _db.Animals.ToListAsync();
         }
 
         [HttpGet("getone/{x}")]
-        public Animal GetOneAnimal(int x)
+        public async Task<Animal?> GetAnimal(int x)
         {
-            return _db.Animals.Find(x);
+            return await _db.Animals.FindAsync(x);
         }
 
         [HttpPost("add")]
-        public string AddAnimal([FromQuery] string name, string owner, int age, string type)
+        public async Task<IActionResult> AddAnimal([FromQuery] string name, string owner, int age, string type)
         {
-            _service.AddNewAnimal(name, owner, age, type);
-            return "200? most probably.";
+            await _service.AddNewAnimal(name, owner, age, type);
+            return Ok("Animal Added.");
         }
 
         [HttpPost("heal/{id}")]
-        public string HealAnimal(int id)
+        public async Task<IActionResult> HealAnimal(int id)
         {
-            _service.Heal(id);
-            return "Animal is healed... maybe. What status code?";
+            await _service.Heal(id);
+            return Ok("Animal Healed.");
         }
 
         [HttpDelete("delete/{id}")]
-        public string DeleteAnimal(int id)
+        public async Task<IActionResult> DeleteAnimal(int id)
         {
-            _db.Remove(id);
-            return "removed i think";
+            var a = await _db.Animals.FindAsync(id);
+            if (a != null)
+            {
+                _db.Animals.Remove(a);
+                return Ok("Animal Removed.");
+            }
+            else
+            {
+                return NotFound("Animal not found.");
+            }
         }
 
         [HttpPost("ageup")]
-        public string AgeUp()
+        public async Task<IActionResult> AgeUp()
         {
-            _service.AllAgeUp();
-            return "everyone got older";
+            await _service.AllAgeUp();
+            return Ok("All animal ages increased.");
         }
     }
 }
