@@ -31,16 +31,16 @@ namespace code_refactoring.Controllers
         }
 
         [HttpPost("add")]
-        public string AddAnimal([FromQuery] string n, string o, int a, string t)
+        public string AddAnimal([FromQuery] string name, string owner, int age, string type)
         {
-            _service.AddNewAnimal(n, o, a, t);
+            _service.AddNewAnimal(name, owner, age, type);
             return "200? most probably.";
         }
 
         [HttpPost("heal/{id}")]
         public string HealAnimal(int id)
         {
-            _service.DoHeal(id);
+            _service.Heal(id);
             return "Animal is healed... maybe. What status code?";
         }
 
@@ -54,7 +54,7 @@ namespace code_refactoring.Controllers
         [HttpPost("ageup")]
         public string AgeUp()
         {
-            _service.RandomAgeUp();
+            _service.AllAgeUp();
             return "everyone got older";
         }
     }

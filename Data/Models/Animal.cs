@@ -6,22 +6,28 @@ namespace code_refactoring.Data.Models
     {
         [Key]
         public int id { get; set; }
-        public string Namez;
-        public string OwNer;
-        public int agee;
-        public string typee;
-        public bool sickOrNot = false;
-        public string notezz = "";
+        [Required]
+        public string Name { get; set; } = String.Empty;
+        [Required]
+        public string Owner { get; set; } = String.Empty;
+        [Required]
+        public int Age { get; set; } = 0;
+        [Required]
+        public string Type { get; set; } = String.Empty;
+        [Required]
+        public bool Sick { get; set; } = false;
+        [Required]
+        public string Notes { get; set; } = String.Empty;
 
         public void MakeOlder()
         {
-            agee += 3;
+            Age += 3;//left intentionally
         }
 
         public void Heal()
         {
-            sickOrNot = false;
-            notezz = "feeling ok i guess";
+            Sick = false;
+            Notes = "Healed.";
         }
     }
 }
