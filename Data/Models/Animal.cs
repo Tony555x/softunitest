@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 namespace code_refactoring.Data.Models
 {
@@ -18,7 +19,10 @@ namespace code_refactoring.Data.Models
         public bool Sick { get; set; } = false;
         [Required]
         public string Notes { get; set; } = String.Empty;
-
+        [ForeignKey(nameof(ApplicationUser))]
+        [Required]
+        public string UserId { get; set; } = String.Empty;
+        public ApplicationUser? ApplicationUser{ get; set; }
         public void MakeOlder()
         {
             Age += 3;//left intentionally
