@@ -8,10 +8,10 @@ namespace CodeRefactoring.Controllers
     [Route("api/[controller]")]
     public class AnimalzController : ControllerBase
     {
-        private DbThingy db;
+        private ApplicationDbContext db;
         private AnimalService servicer;
 
-        public AnimalzController(DbThingy d, AnimalService s)
+        public AnimalzController(ApplicationDbContext d, AnimalService s)
         {
             db = d;
             servicer = s;

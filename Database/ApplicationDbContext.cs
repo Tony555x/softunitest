@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Namespace
 {
-    public class DbThingy : IdentityDbContext<Potrebitel>
+    public class ApplicationDbContext : IdentityDbContext<Potrebitel>
     {
-        public DbThingy(DbContextOptions options)
+        public ApplicationDbContext(DbContextOptions options)
             : base(options) { }
             
         public DbSet<Stoka> Stoki { get; set; }
