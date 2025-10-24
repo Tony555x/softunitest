@@ -1,5 +1,6 @@
 using code_refactoring.Data;
 using code_refactoring.Data.Models;
+using code_refactoring.Models;
 using code_refactoring.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,16 +20,18 @@ namespace code_refactoring.Controllers
         }
 
         [HttpGet("getall")]
-        public async Task<List<Animal>> GetAllAnimals()
+        public async Task<List<AnimalDetails>> GetAllAnimals()
         {
 
-            return await _db.Animals.ToListAsync();
+            return (await _db.Animals.ToListAsync()).Select(a=>new AnimalDetails(a)).ToList();
         }
 
         [HttpGet("getone/{x}")]
-        public async Task<Animal?> GetAnimal(int x)
+        public async Task<AnimalDetails?> GetAnimal(int x)
         {
-            return await _db.Animals.FindAsync(x);
+            Animal? a = await _db.Animals.FindAsync(x);
+            if (a == null) return null;
+            return new AnimalDetails(a);
         }
 
         [HttpPost("add")]

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using code_refactoring.Data.Models;
 
-namespace Namespace
+namespace code_refactoring.Models
 {
     public class AnimalDetails
     {
@@ -15,7 +15,7 @@ namespace Namespace
         public string Type{ get; set; } = String.Empty;
         public bool Sick{ get; set; } = false;
         public string Notes { get; set; } = String.Empty;
-        public AnimalDetails FromAnimal(Animal a)
+        public AnimalDetails(Animal a)
         {
             Id = a.Id;
             Name = a.Name;
@@ -24,7 +24,6 @@ namespace Namespace
             Type = a.Type;
             Sick = a.Sick;
             Notes = a.Notes;
-            return this;
         }   
     }
 }
