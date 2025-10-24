@@ -1,8 +1,9 @@
+using code_refactoring.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Namespace
+namespace code_refactoring.Data
 {
     public class ApplicationDbContext : IdentityDbContext<Potrebitel>
     {

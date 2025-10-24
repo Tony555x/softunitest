@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
-namespace Namespace
+namespace code_refactoring.Data.Models
 {
     public class Animal
     {

@@ -1,8 +1,8 @@
+using code_refactoring.Data;
+using code_refactoring.Data.Models;
+using code_refactoring.Services;
 using Microsoft.AspNetCore.Mvc;
-using Namespace;
-using NameSpace;
-
-namespace CodeRefactoring.Controllers
+namespace code_refactoring.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -20,14 +20,14 @@ namespace CodeRefactoring.Controllers
         [HttpGet("getall")]
         public List<Stoka> GetAllAnimals()
         {
-            
+
             return db.Stoki.ToList();
         }
 
         [HttpGet("getone/{x}")]
         public Stoka GetOneAnimal(int x)
         {
-            return db.Stoki.Find(x); 
+            return db.Stoki.Find(x);
         }
 
         [HttpPost("add")]

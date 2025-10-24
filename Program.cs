@@ -1,8 +1,9 @@
+using code_refactoring.Data;
+using code_refactoring.Data.Models;
+using code_refactoring.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Namespace;
-using NameSpace;
 
 var builder = WebApplication.CreateBuilder(args);
 

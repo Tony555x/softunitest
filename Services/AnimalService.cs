@@ -1,7 +1,8 @@
 using System;
-using Namespace;
+using code_refactoring.Data;
+using code_refactoring.Data.Models;
 
-namespace NameSpace
+namespace code_refactoring.Services
 {
     public class AnimalService
     {
