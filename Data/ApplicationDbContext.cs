@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace code_refactoring.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<Potrebitel>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions options)
             : base(options) { }

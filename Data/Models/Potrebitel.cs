@@ -1,10 +1,13 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 
 namespace code_refactoring.Data.Models
 {
-    public class Potrebitel : IdentityUser
+    public class ApplicationUser : IdentityUser
     {
-        public string purvoime { get; set; }
+        [Required]
+        public string FirstName { get; set; }
+        [Required]
         public string LastName { get; set; }
     }
 }
